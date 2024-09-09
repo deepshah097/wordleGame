@@ -47,7 +47,7 @@ export default function useWordle() {
     }
     setMarkers(updatedMarkers);
     if (_round === 5) {
-      setModalVisible({ show: true, message: "You Loss! try again" });
+      setModalVisible({ show: true, message: "You Loss! Try Again?" });
     } else {
       round.current = _round + 1;
       letterIndex.current = 0;
@@ -84,15 +84,7 @@ export default function useWordle() {
         newGuesses[_round][_letterIndex] = pressedKey.toLowerCase();
         return newGuesses;
       });
-
       letterIndex.current = _letterIndex + 1;
-    }
-    if (_round === 0) {
-      setMarkers((prev) => {
-        const newMarkers = { ...prev };
-        newMarkers[_round] = ["", "", "", "", ""];
-        return newMarkers;
-      });
     }
   };
 
