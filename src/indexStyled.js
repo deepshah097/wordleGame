@@ -17,9 +17,8 @@ export const Header = styled.header`
   height: 50px;
   width: 100%;
   flex-grow: 1;
-  border-bottom: 1px solid #3a3a3c;
   font-weight: 700;
-  font-size: 3.6rem;
+  font-size: clamp(1rem, 4vmin, 4rem);
   letter-spacing: 0.2rem;
   text-transform: uppercase;
 `;

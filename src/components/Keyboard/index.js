@@ -9,12 +9,20 @@ import { keyboardRows } from "./constant";
 import BackspaceIcon from "../../assets/images/backArrow.svg";
 
 export default function Keyboard({ handleClick, guesses, markers, round }) {
-  const [keyList, setKeyList] = useState([]);
-  const [keyValueList, setKeyValueList] = useState([]);
+  const [keyData, setKeyData] = useState({
+    keyList: [],
+    keyValueList: [],
+  });
+
+  const getData = (list) => {
+    return Object.values(list).flat();
+  };
 
   const setData = () => {
-    setKeyList([...[0, 1, 2, 3, 4, 5].map((i) => guesses[i])].flat());
-    setKeyValueList([...[0, 1, 2, 3, 4, 5].map((i) => markers[i])].flat());
+    setKeyData({
+      keyList: getData(guesses),
+      keyValueList: getData(markers),
+    });
   };
 
   useEffect(() => {
@@ -28,7 +36,7 @@ export default function Keyboard({ handleClick, guesses, markers, round }) {
           {i === 1 && <Flex item={0.5} />}
           {keys.map((key) => (
             <KeyboardButton
-              hint={keyValueList[keyList.lastIndexOf(key)]}
+              hint={keyData.keyValueList[keyData.keyList.lastIndexOf(key)]}
               key={key}
               onClick={() => handleClick(key)}
               flex={["enter", "backspace"].includes(key) ? 1.5 : 1}

@@ -6,10 +6,10 @@ export const KeyboardSection = styled.section`
   display: flex;
   flex-direction: column;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 992px) {
     width: 80%;
   }
-  @media (max-width: 420px) {
+  @media (max-width: 676px) {
     width: 100%;
   }
 `;
@@ -34,6 +34,7 @@ export const KeyboardButton = styled.button`
   padding: 0;
   margin: 0 6px 0 0;
   height: 58px;
+  font-size: clamp(0.25rem, 2.5vmin, 1rem);
   ${({ item }) => (item ? `flex: ${item};` : `flex: 1;`)}
 
   border: 0;
