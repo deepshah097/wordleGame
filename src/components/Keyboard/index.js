@@ -19,7 +19,8 @@ export default function Keyboard({ handleClick, guesses, markers, round }) {
 
   useEffect(() => {
     setData();
-  }, [round]); // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [round]);
   return (
     <KeyboardSection>
       {keyboardRows.map((keys, i) => (
