@@ -12,9 +12,13 @@ export default function Keyboard({ handleClick, guesses, markers, round }) {
   const [keyList, setKeyList] = useState([]);
   const [keyValueList, setKeyValueList] = useState([]);
 
-  useEffect(() => {
+  const setData = () => {
     setKeyList([...[0, 1, 2, 3, 4, 5].map((i) => guesses[i])].flat());
     setKeyValueList([...[0, 1, 2, 3, 4, 5].map((i) => markers[i])].flat());
+  };
+
+  useEffect(() => {
+    setData();
   }, [round]);
   return (
     <KeyboardSection>

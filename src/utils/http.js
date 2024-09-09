@@ -10,7 +10,7 @@ export const headers = () => {
   };
 };
 
-export default {
+const http = {
   get: async (path) => {
     return await fetch(REACT_APP_API_URL + path, {
       mode: "cors",
@@ -42,3 +42,5 @@ export default {
     });
   },
 };
+
+export default http;
