@@ -25,7 +25,7 @@ export default function useWordle() {
 
   const win = () => {
     document.removeEventListener("keydown", handleKeyDown);
-    setModalVisible({ show: true, message: "You Win! Play Again?" });
+    setModalVisible({ show: true, message: "You Win!" });
   };
 
   const submit = (score) => {
@@ -33,12 +33,10 @@ export default function useWordle() {
     const updatedMarkers = {
       ...markers,
     };
-
     score.forEach((letter, index) => {
       updatedMarkers[_round][index] =
         letter === 2 ? "green" : letter === 1 ? "yellow" : "grey";
     });
-
     if (updatedMarkers[_round].every((guess) => guess === "green")) {
       setMarkers(updatedMarkers);
       round.current = _round + 1;
@@ -47,7 +45,7 @@ export default function useWordle() {
     }
     setMarkers(updatedMarkers);
     if (_round === 5) {
-      setModalVisible({ show: true, message: "You Loss! Try Again?" });
+      setModalVisible({ show: true, message: "You Loss!" });
     } else {
       round.current = _round + 1;
       letterIndex.current = 0;
@@ -57,20 +55,17 @@ export default function useWordle() {
   const erase = () => {
     const _letterIndex = letterIndex.current;
     const _round = round.current;
-
     if (_letterIndex !== 0) {
       setGuesses((prev) => {
         const newGuesses = { ...prev };
         newGuesses[_round][_letterIndex - 1] = "";
         return newGuesses;
       });
-
       setMarkers((prev) => {
         const newMarkers = { ...prev };
         newMarkers[_round] = ["", "", "", "", ""];
         return newMarkers;
       });
-
       letterIndex.current = _letterIndex - 1;
     }
   };
@@ -132,7 +127,6 @@ export default function useWordle() {
 
   const handleKeyDown = (e) => {
     const pressedKey = e.key.toLowerCase();
-
     if (allKeys.includes(pressedKey)) {
       enterGuess(pressedKey);
     }

@@ -1,8 +1,8 @@
 import "./App.css";
 import { useEffect } from "react";
-import Modal from "react-modal";
-import { Main, Header, Heading } from "./indexStyled";
+import { Main, Header } from "./indexStyled";
 import Keyboard from "./components/Keyboard";
+import Modal from "./components/Modal";
 import Tiles from "./components/Tiles";
 import useWordle from "./hooks/useWordle";
 
@@ -36,21 +36,9 @@ function App() {
       </Main>
       {isModalVisible.show && (
         <Modal
-          isOpen={true}
-          onRequestClose={handleModalClose}
-          style={{
-            content: {
-              top: "50%",
-              left: "50%",
-              right: "auto",
-              bottom: "auto",
-              marginRight: "-50%",
-              transform: "translate(-50%, -50%)",
-            },
-          }}
-        >
-          <Heading>{isModalVisible.message}</Heading>
-        </Modal>
+          handleModalClose={handleModalClose}
+          message={isModalVisible.message}
+        />
       )}
     </>
   );
